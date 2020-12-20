@@ -1,31 +1,14 @@
 <template>
 	<div>
-		<van-pull-refresh
-			v-model="isLoading"
-			@refresh="onRefresh"
-			:success-text="successText"
-		>
-			<van-list
-				v-model="loading"
-				:finished="finished"
-				finished-text="没有更多了"
-				@load="onLoad"
-				:error.sync="error"
-				error-text="请求失败，点击重新加载"
-			>
+		<van-pull-refresh v-model="isLoading" @refresh="onRefresh" :success-text="successText">
+			<van-list v-model="loading" :finished="finished" finished-text="没有更多了" @load="onLoad" :error.sync="error" error-text="请求失败，点击重新加载">
 				<!-- <van-cell
 				v-for="article in list"
 				:key="article.ch_id"
 				:title="article.title"
 			/> -->
 				<!-- article.ch_id -->
-				<article-cell
-					slot="default"
-					v-for="(article, index) in list"
-					:key="index"
-					:title="article.title"
-					:article="article"
-				></article-cell>
+				<article-cell slot="default" v-for="(article, index) in list" :key="index" :title="article.title" :article="article"></article-cell>
 			</van-list>
 		</van-pull-refresh>
 	</div>
@@ -35,7 +18,7 @@
 	import ArticleCell from './article-cell.vue'
 	export default {
 		name: 'channel-list',
-		data() {
+		data () {
 			return {
 				list: [],
 				loading: false,
@@ -47,7 +30,7 @@
 			}
 		},
 		methods: {
-			async onLoad() {
+			async onLoad () {
 				try {
 					const { data } = await getArticles({
 						channel_id: this.channel.id,
@@ -70,7 +53,7 @@
 					this.loading = false
 				}
 			},
-			async onRefresh() {
+			async onRefresh () {
 				try {
 					const { data } = await getArticles({
 						channel_id: this.channel.id,
@@ -88,7 +71,7 @@
 				}
 			},
 		},
-		async created() {
+		async created () {
 			try {
 				const { data } = await getArticles({
 					channel_id: this.channel.id,

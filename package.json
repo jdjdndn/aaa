@@ -11,6 +11,7 @@
     "axios": "^0.21.0",
     "core-js": "^3.6.5",
     "dayjs": "^1.9.7",
+    "json-bigint": "^1.0.0",
     "lodash": "^4.17.20",
     "postcss-pxtorem": "^5.1.1",
     "van": "0.0.4",

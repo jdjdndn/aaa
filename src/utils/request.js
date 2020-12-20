@@ -4,8 +4,18 @@
 
 import axios from 'axios'
 import store from '@/store'
+import JSONbig from 'json-bigint'
 const request = axios.create({
-	baseURL: 'http://toutiao-app.itheima.net/',
+	// baseURL: 'http://toutiao-app.itheima.net/',
+	transformRequest: [
+		function(data) {
+			try {
+				return JSONbig.parse(data)
+			} catch (err) {
+				return data
+			}
+		},
+	],
 })
 
 request.interceptors.request.use(

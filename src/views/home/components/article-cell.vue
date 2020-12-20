@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<van-cell>
+		<van-cell :to='{name: "article", params: {articleID: article.art_id}}'>
 			<!-- 左边标题 -->
 			<div slot="title">{{ article.title }}</div>
 			<!-- 右边内容 -->
@@ -9,11 +9,7 @@
 			</div>
 			<!-- 底部内容 -->
 			<div v-if="article.cover.images.length === 3" slot="label">
-				<van-image
-					v-for="(img, index) in article.cover.images"
-					:key="index"
-					:src="img"
-				/>
+				<van-image v-for="(img, index) in article.cover.images" :key="index" :src="img" />
 				<div class="bottomtext">
 					<span>{{ article.aut_name }}</span>
 					<span>{{ article.collect_count }}</span>
@@ -26,11 +22,11 @@
 <script>
 	export default {
 		name: '',
-		data() {
+		data () {
 			return {}
 		},
 		methods: {},
-		created() {
+		created () {
 			// console.log(this.article)
 		},
 		props: {

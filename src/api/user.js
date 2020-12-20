@@ -4,13 +4,13 @@
 import request from '@/utils/request'
 
 /* 
-/v1_0/authorizations   用户认证（登录注册）
+/app/v1_0/authorizations   用户认证（登录注册）
 */
 
 export const login = data => {
 	return request({
 		method: 'POST',
-		url: '/v1_0/authorizations',
+		url: '/app/v1_0/authorizations',
 		data,
 	})
 }
@@ -19,7 +19,7 @@ export const login = data => {
 export const getUserInfo = () => {
 	return request({
 		method: 'get',
-		url: '/v1_0/user/profile',
+		url: '/app/v1_0/user/profile',
 	})
 }
 
@@ -27,6 +27,6 @@ export const getUserInfo = () => {
 export const getUserChannels = () => {
 	return request({
 		method: 'GET',
-		url: '/v1_0/user/channels',
+		url: '/app/v1_0/user/channels',
 	})
 }

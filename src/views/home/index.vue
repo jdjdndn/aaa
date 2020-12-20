@@ -1,24 +1,11 @@
 <template>
 	<div class="home-container">
 		<van-nav-bar fixed>
-			<van-button
-				slot="title"
-				type="info"
-				round
-				size="mini"
-				icon="search"
-				class="searchBtn"
-				@click="$router.push({ name: 'search', query: { redirect: '/' } })"
-				>搜索</van-button
-			>
+			<van-button slot="title" type="info" round size="mini" icon="search" class="searchBtn" @click="$router.push({ name: 'search', query: { redirect: '/' } })">搜索</van-button>
 		</van-nav-bar>
 
 		<van-tabs v-model="active" swipeable animated swipe-threshold="4">
-			<van-tab
-				:title="channel.name"
-				v-for="(channel, index) in myChannles"
-				:key="channel.id"
-			>
+			<van-tab :title="channel.name" v-for="(channel,  index) in myChannles" :key="channel.id">
 				<!-- 子组件channel-list 是每个频道的文章列表 -->
 				<channel-list :channel="channel"></channel-list>
 				<!-- 根据每一个频道获取对应的数据,所以每个频道都要list,list是tab的子组件 -->
@@ -30,20 +17,9 @@
 		</van-tabs>
 
 		<!-- 弹出层 -->
-		<van-popup
-			v-model="isPopupShow"
-			closeable
-			close-icon-position="top-left"
-			position="bottom"
-			:style="{ height: '100%' }"
-		>
+		<van-popup v-model="isPopupShow" closeable close-icon-position="top-left" position="bottom" :style="{ height: '100%' }">
 			<!-- 选择频道组件 -->
-			<choose-channel
-				class="popup-box"
-				:myChannles="myChannles"
-				:active="active"
-				@changeChannelLight="channelLightChange"
-			></choose-channel>
+			<choose-channel class="popup-box" :myChannles="myChannles" :active="active" @changeChannelLight="channelLightChange"></choose-channel>
 		</van-popup>
 	</div>
 </template>
@@ -55,7 +31,7 @@
 	import { getItem } from '@/utils/storage'
 	export default {
 		name: 'home',
-		data() {
+		data () {
 			return {
 				active: 0,
 				myChannles: [],
@@ -63,14 +39,14 @@
 			}
 		},
 		methods: {
-			channelLightChange(index, isPopupShow = true) {
+			channelLightChange (index, isPopupShow = true) {
 				//关闭弹出层
 				this.isPopupShow = isPopupShow
 				//改变tabbar当前高亮
 				this.active = index
 			},
 		},
-		async created() {
+		async created () {
 			try {
 				if (this.user) {
 					//登录了直接发请求
